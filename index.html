@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Canvas Project</title>
+
+</head>
+
+<body>
+	<h1>Canvas Project</h1>
+	<canvas id="canvas" width = "800px" height="500px">
+  Drawing Game
+</canvas>
+
+
+
+
+
+
+
+<script>
+	var canvas = document.querySelector('canvas'); //always
+	var ctx = canvas.getContext('2d'); //have these two lines
+
+	var radius = 10;
+	var color = 'black';
+
+	function drawCircle(mouseX, mouseY){	  
+	  // Establish the circle path
+	  ctx.beginPath();
+	  ctx.arc(mouseX, mouseY - 60, radius, 0 , 2 * Math.PI, false);
+	  
+	  // Fill the circle
+	  ctx.fillStyle = color;
+	  ctx.fill();
+	}
+
+	document.addEventListener('keypress', function(event) {
+		switch(event.keyCode) {
+			case 114:
+				color = 'red';
+				break;
+			case 98:
+				color = 'blue';
+				break;
+			case 121:
+				color = 'yellow';
+				break;
+			case 103:
+				color = 'green';
+				break;
+			case 32:
+				ctx.clearRect(0, 0, 800, 500);
+				break;
+		}
+	});
+
+	document.addEventListener('keydown', function(event) {
+		switch(event.keyCode) {
+			case 38:
+				radius += 1;
+				break;
+			case 40:
+				radius -= 1;
+				break;
+		}
+	});
+
+	canvas.addEventListener('mousemove',function(event) {
+		drawCircle(event.clientX, event.clientY);
+	});
+
+</script>
+
+</body>
+</html>
